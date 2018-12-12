@@ -1,6 +1,9 @@
 package org.casadocodigo.store.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class Product {
@@ -9,20 +12,28 @@ public class Product {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public int getId() {
+        return id;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public int getPages() {
         return pages;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setPages(int pages) {
@@ -37,6 +48,10 @@ public class Product {
                 ", pages=" + pages +
                 '}';
     }
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     private String description;
     private String title;
