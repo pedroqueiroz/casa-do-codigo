@@ -1,5 +1,8 @@
 package org.casadocodigo.store.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Product {
 
     public String getDescription() {
