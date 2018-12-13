@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -24,6 +25,10 @@ public class Product {
         return pages;
     }
 
+    public List<Price> getPrices() {
+        return prices;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -38,6 +43,10 @@ public class Product {
 
     public void setPages(int pages) {
         this.pages = pages;
+    }
+
+    public void setPrices(List<Price> prices) {
+        this.prices = prices;
     }
 
     @Override
@@ -56,4 +65,5 @@ public class Product {
     private String description;
     private String title;
     private int pages;
+    private List<Price> prices;
 }
