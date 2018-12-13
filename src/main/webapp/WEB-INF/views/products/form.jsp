@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,9 +20,17 @@
     </div>
     <div>
         <label>Páginas</label>
-        <input type="text" name="pages" />
+        <input priceType="text" name="pages" />
     </div>
-    <button type="submit">Cadastrar</button>
+    <c:forEach items="${priceTypes}" var="priceType" varStatus="status">
+        <div>
+            <label>${priceType}</label>
+            <input type="text" name="prices[${status.index}].value">
+            <input type="hidden" name="prices[${status.index}].priceType" value="${priceType}">
+        </div>
+    </c:forEach>
+
+    <button priceType="submit">Cadastrar</button>
 </form>
 </body>
 </html>
