@@ -1,9 +1,6 @@
 package org.casadocodigo.store.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -62,8 +59,10 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @ElementCollection
+    private List<Price> prices;
+
     private String description;
     private String title;
     private int pages;
-    private List<Price> prices;
 }
