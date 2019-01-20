@@ -12,9 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
+@RequestMapping("/products")
 public class ProductController {
 
-    @RequestMapping("/products/form")
+    @RequestMapping("/form")
     public ModelAndView getProductForm() {
         ModelAndView modelAndView = new ModelAndView("products/form");
 
@@ -23,14 +24,14 @@ public class ProductController {
         return modelAndView;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/products")
+    @RequestMapping(method = RequestMethod.POST)
     public String addProduct(Product product) {
         productDAO.add(product);
 
         return "products/success";
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/products")
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView listProducts() {
         ModelAndView modelAndView = new ModelAndView("products/listing");
 

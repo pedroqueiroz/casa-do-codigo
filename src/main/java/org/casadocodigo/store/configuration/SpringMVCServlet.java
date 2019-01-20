@@ -21,7 +21,7 @@ public class SpringMVCServlet extends
     @Override
     protected Filter[] getServletFilters() {
         CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
-        
+
         encodingFilter.setEncoding("UTF-8");
 
         return new Filter[] {encodingFilter};
