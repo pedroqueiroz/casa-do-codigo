@@ -1,6 +1,9 @@
 package org.casadocodigo.store.configuration;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.Filter;
 
 public class SpringMVCServlet extends
         AbstractAnnotationConfigDispatcherServletInitializer {
@@ -13,6 +16,15 @@ public class SpringMVCServlet extends
     @Override
     protected Class<?>[] getServletConfigClasses() {
         return new Class[] { AppWebConfiguration.class, JPAConfiguration.class };
+    }
+
+    @Override
+    protected Filter[] getServletFilters() {
+        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+        
+        encodingFilter.setEncoding("UTF-8");
+
+        return new Filter[] {encodingFilter};
     }
 
     @Override
