@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/products")
@@ -23,8 +24,10 @@ public class ProductController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView addProduct(Product product) {
+    public ModelAndView addProduct(Product product, RedirectAttributes redirectAttributes) {
         productDAO.add(product);
+
+        redirectAttributes.addFlashAttribute("successMessage", "Product was added successfully!");
 
         return new ModelAndView("redirect:products");
     }

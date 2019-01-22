@@ -8,6 +8,7 @@
 </head>
 <body>
 <h1>Lista de Produtos</h1>
+<div>${successMessage}</div>
 <table>
     <tr>
         <td>Título</td>
