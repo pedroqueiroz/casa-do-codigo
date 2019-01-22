@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
 @RequestMapping("/products")
 public class ProductController {
@@ -25,10 +23,10 @@ public class ProductController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String addProduct(Product product) {
+    public ModelAndView addProduct(Product product) {
         productDAO.add(product);
 
-        return "products/success";
+        return new ModelAndView("redirect:products");
     }
 
     @RequestMapping(method = RequestMethod.GET)
