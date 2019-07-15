@@ -11,9 +11,9 @@
 <div>${successMessage}</div>
 <table>
     <tr>
-        <td>Título</td>
-        <td>Descrição</td>
-        <td>Páginas</td>
+        <th>Título</th>
+        <th>Descrição</th>
+        <th>Páginas</th>
     </tr>
     <c:forEach items="${products}" var="product">
         <tr>
