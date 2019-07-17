@@ -38,7 +38,7 @@ public class ProductController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView addProduct(@Valid Product product, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public ModelAndView add(@Valid Product product, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return getProductForm();
         }
