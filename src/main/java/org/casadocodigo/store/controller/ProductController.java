@@ -29,7 +29,7 @@ public class ProductController {
     }
 
     @RequestMapping("/form")
-    public ModelAndView getProductForm() {
+    public ModelAndView getProductForm(Product product) {
         ModelAndView modelAndView = new ModelAndView("products/form");
 
         modelAndView.addObject("priceTypes", PriceType.values());
@@ -38,9 +38,11 @@ public class ProductController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView add(@Valid Product product, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public ModelAndView add(MultipartFile summary, @Valid Product product, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+        System.out.println(summary.getOriginalFilename());
+
         if (bindingResult.hasErrors()) {
-            return getProductForm();
+            return getProductForm(product);
         }
 
         productDAO.add(product);
