@@ -1,10 +1,27 @@
 package org.casadocodigo.store.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.util.Calendar;
 import java.util.List;
 
 @Entity
 public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @ElementCollection
+    private List<Price> prices;
+
+    private String description;
+    private String title;
+    private int pages;
+
+    @DateTimeFormat(pattern="dd/MM/yyyy")
+    private Calendar releaseDate;
 
     public String getDescription() {
         return description;
@@ -46,6 +63,14 @@ public class Product {
         this.prices = prices;
     }
 
+    public Calendar getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(Calendar releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
@@ -54,15 +79,4 @@ public class Product {
                 ", pages=" + pages +
                 '}';
     }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @ElementCollection
-    private List<Price> prices;
-
-    private String description;
-    private String title;
-    private int pages;
 }

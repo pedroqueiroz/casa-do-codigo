@@ -47,7 +47,7 @@ public class ProductController {
 
         redirectAttributes.addFlashAttribute("successMessage", "Product was added successfully!");
 
-        return new ModelAndView("redirect:products");
+        return new ModelAndView("redirect:/products");
     }
 
     @RequestMapping(method = RequestMethod.GET)

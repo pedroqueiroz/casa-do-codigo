@@ -28,6 +28,11 @@
         <input priceType="text" name="pages" />
         <form:errors path="pages" />
     </div>
+    <div>
+        <label>Data de Lançamento</label>
+        <input type="text" name="releaseDate" />
+        <form:errors path="releaseDate" />
+    </div>
     <c:forEach items="${priceTypes}" var="priceType" varStatus="status">
         <div>
             <label>${priceType}</label>
