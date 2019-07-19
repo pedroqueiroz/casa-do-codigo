@@ -15,29 +15,29 @@
 <form:form action="${s:mvcUrl('PC#add').build()}" method="POST" modelAttribute="product">
     <div>
         <label>Título</label>
-        <input type="text" name="title" />
+        <form:input path="title" />
         <form:errors path="title" />
     </div>
     <div>
         <label>Descrição</label>
-        <textarea rows="10" cols="20" name="description"></textarea>
+        <form:textarea rows="10" cols="20" path="description" />
         <form:errors path="description" />
     </div>
     <div>
         <label>Páginas</label>
-        <input priceType="text" name="pages" />
+        <form:input path="pages" />
         <form:errors path="pages" />
     </div>
     <div>
         <label>Data de Lançamento</label>
-        <input type="text" name="releaseDate" />
+        <form:input path="releaseDate" />
         <form:errors path="releaseDate" />
     </div>
     <c:forEach items="${priceTypes}" var="priceType" varStatus="status">
         <div>
             <label>${priceType}</label>
-            <input type="text" name="prices[${status.index}].value">
-            <input type="hidden" name="prices[${status.index}].priceType" value="${priceType}">
+            <form:input path="prices[${status.index}].value" />
+            <form:hidden path="prices[${status.index}].priceType" value="${priceType}" />
         </div>
     </c:forEach>
 
