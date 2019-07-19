@@ -20,7 +20,7 @@ public class Product {
     private String title;
     private int pages;
 
-    @DateTimeFormat(pattern="dd/MM/yyyy")
+    @DateTimeFormat
     private Calendar releaseDate;
 
     public String getDescription() {
