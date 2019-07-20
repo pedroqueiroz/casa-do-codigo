@@ -13,6 +13,9 @@ import java.util.List;
 @Transactional
 public class ProductDAO {
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     public void add(Product product) {
         entityManager.persist(product);
     }
@@ -24,6 +27,12 @@ public class ProductDAO {
         return query.getResultList();
     }
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    public Product findById(Integer id) {
+        return entityManager
+            .createQuery(
+                "select distinct(p) from Product p join fetch p.prices price where p.id = :id",
+                Product.class)
+            .setParameter("id", id)
+            .getSingleResult();
+    }
 }
