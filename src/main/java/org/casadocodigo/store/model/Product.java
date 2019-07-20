@@ -3,6 +3,7 @@ package org.casadocodigo.store.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
@@ -79,6 +80,13 @@ public class Product {
 
     public void setSummaryPath(String summaryPath) {
         this.summaryPath = summaryPath;
+    }
+
+    public BigDecimal priceFor(PriceType priceType) {
+        return prices.stream()
+            .filter(price -> price.getPriceType().equals(priceType))
+            .findFirst()
+            .get().getValue();
     }
 
     @Override
