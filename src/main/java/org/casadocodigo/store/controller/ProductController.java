@@ -1,6 +1,7 @@
 package org.casadocodigo.store.controller;
 
 import org.casadocodigo.store.dao.ProductDAO;
+import org.casadocodigo.store.infrastructure.FileSaver;
 import org.casadocodigo.store.model.PriceType;
 import org.casadocodigo.store.model.Product;
 import org.casadocodigo.store.validation.ProductValidator;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -22,6 +24,9 @@ public class ProductController {
 
     @Autowired
     private ProductDAO productDAO;
+
+    @Autowired
+    private FileSaver fileSaver;
 
     @InitBinder
     public void initBinder(WebDataBinder binder) {
@@ -39,11 +44,11 @@ public class ProductController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView add(MultipartFile summary, @Valid Product product, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
-        System.out.println(summary.getOriginalFilename());
-
         if (bindingResult.hasErrors()) {
             return getProductForm(product);
         }
+
+        product.setSummaryPath(fileSaver.write("summary-files", summary));
 
         productDAO.add(product);
 

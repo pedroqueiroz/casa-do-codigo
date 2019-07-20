@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<form:form action="${s:mvcUrl('PC#add').build()}" method="POST" modelAttribute="product">
+<form:form action="${s:mvcUrl('PC#add').build()}" method="POST" modelAttribute="product" enctype="multipart/form-data">
     <div>
         <label>Título</label>
         <form:input path="title" />
@@ -40,6 +40,10 @@
             <form:hidden path="prices[${status.index}].priceType" value="${priceType}" />
         </div>
     </c:forEach>
+    <div>
+        <label>Sumário</label>
+        <input name="summary" type="file" />
+    </div>
 
     <button priceType="submit">Cadastrar</button>
 </form:form>
