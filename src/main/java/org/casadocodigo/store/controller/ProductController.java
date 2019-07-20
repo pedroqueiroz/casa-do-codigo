@@ -9,14 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.lang.annotation.Retention;
 
 @Controller
 @RequestMapping("/products")
@@ -62,6 +61,17 @@ public class ProductController {
         ModelAndView modelAndView = new ModelAndView("products/listing");
 
         modelAndView.addObject("products", productDAO.list());
+
+        return modelAndView;
+    }
+
+    @RequestMapping("/details/{id}")
+    public ModelAndView showDetails(@PathVariable Integer id) {
+        ModelAndView modelAndView = new ModelAndView("products/details");
+
+        Product product = productDAO.findById(id);
+
+        modelAndView.addObject("product", product);
 
         return modelAndView;
     }
