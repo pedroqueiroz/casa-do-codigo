@@ -6,6 +6,7 @@ import org.casadocodigo.store.model.PriceType;
 import org.casadocodigo.store.model.Product;
 import org.casadocodigo.store.validation.ProductValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.lang.annotation.Retention;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/products")
@@ -42,12 +44,15 @@ public class ProductController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
+    @CacheEvict(value = "serveHome", allEntries = true)
     public ModelAndView add(MultipartFile summary, @Valid Product product, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             return getProductForm(product);
         }
 
-        product.setSummaryPath(fileSaver.write("summary-files", summary));
+        if (!Objects.equals(summary.getOriginalFilename(), "")) {
+            product.setSummaryPath(fileSaver.write("summary-files", summary));
+        }
 
         productDAO.add(product);
 
