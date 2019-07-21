@@ -80,10 +80,4 @@ public class ProductController {
 
         return modelAndView;
     }
-
-    @RequestMapping("/{id}")
-    @ResponseBody
-    public Product getDetails(@PathVariable Integer id) {
-        return productDAO.findById(id);
-    }
 }
