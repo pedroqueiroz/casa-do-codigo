@@ -47,4 +47,11 @@ public class ShoppingCart {
     public Collection<CartItem> getItems() {
         return items.keySet();
     }
+
+    public void remove(Integer productId, PriceType priceType) {
+        Product product = new Product();
+        product.setId(productId);
+
+        items.remove(new CartItem(product, priceType));
+    }
 }

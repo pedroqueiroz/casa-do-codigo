@@ -91,7 +91,7 @@
 						</td>
 						<td class="numeric-cell">${shoppingCart.getTotalPrice(item)}</td>
 						<td class="remove-item">
-							<form action="" method="POST">
+							<form action="${s:mvcUrl('SCC#removeItem').arg(0, item.product.id).arg(1, item.priceType).build()}" method="POST">
 								<input type="image" src="${contextPath}resources/images/delete-icon.png"
 									alt="Excluir" title="Excluir" />
 							</form>	
