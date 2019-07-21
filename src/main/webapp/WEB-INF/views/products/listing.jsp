@@ -11,6 +11,7 @@
 <body>
 <h1>Lista de Produtos</h1>
 <div>${successMessage}</div>
+<div>${errorMessage}</div>
 <table>
     <tr>
         <th>Título</th>
