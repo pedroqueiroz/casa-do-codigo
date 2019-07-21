@@ -11,6 +11,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.concurrent.Callable;
+
 @Controller
 @RequestMapping
 public class PaymentController {
@@ -24,15 +26,15 @@ public class PaymentController {
     private RestTemplate restTemplate;
 
     @RequestMapping(value = "/checkout", method = RequestMethod.POST)
-    public ModelAndView checkout(RedirectAttributes model) {
-        try {
-            String response = restTemplate.postForObject(PAYMENT_GATEWAY, new PaymentData(cart.getTotalPrice()), String.class);
-            model.addFlashAttribute("successMessage", response);
-        } catch (HttpClientErrorException e) {
-            model.addFlashAttribute("errorMessage", "Valor maior que o permitido");
-        }
-
-
-        return new ModelAndView("redirect:/products");
+    public Callable<ModelAndView> checkout(RedirectAttributes model) {
+        return () -> {
+            try {
+                String response = restTemplate.postForObject(PAYMENT_GATEWAY, new PaymentData(cart.getTotalPrice()), String.class);
+                model.addFlashAttribute("successMessage", response);
+            } catch (HttpClientErrorException e) {
+                model.addFlashAttribute("errorMessage", "Valor maior que o permitido");
+            }
+            return new ModelAndView("redirect:/products");
+        };
     }
 }
