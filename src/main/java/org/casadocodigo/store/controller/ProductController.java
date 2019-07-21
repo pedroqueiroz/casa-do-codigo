@@ -13,10 +13,10 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.lang.annotation.Retention;
 import java.util.Objects;
 
 @Controller
@@ -79,5 +79,11 @@ public class ProductController {
         modelAndView.addObject("product", product);
 
         return modelAndView;
+    }
+
+    @RequestMapping("/{id}")
+    @ResponseBody
+    public Product getDetails(@PathVariable Integer id) {
+        return productDAO.findById(id);
     }
 }
