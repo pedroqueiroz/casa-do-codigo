@@ -101,7 +101,11 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="3"><input type="submit" class="checkout" name="checkout" value="Finalizar compra" /></td>
+					<td colspan="3">
+					    <form action="${s:mvcUrl('PC#checkout').build()}" method="post">
+					        <input type="submit" class="checkout" name="checkout" value="Finalizar compra" />
+					    </form>
+                    </td>
 					<td class="numeric-cell">${shoppingCart.totalPrice}</td>
 					<td></td>
 				</tr>
