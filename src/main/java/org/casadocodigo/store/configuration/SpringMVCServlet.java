@@ -10,12 +10,12 @@ public class SpringMVCServlet extends
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{SpringSecurityConfiguration.class};
+        return new Class[]{JPAConfiguration.class , SpringSecurityConfiguration.class};
     }
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[] { JPAConfiguration.class };
+        return new Class[] {};
     }
 
     @Override
