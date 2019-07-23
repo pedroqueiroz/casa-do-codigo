@@ -86,6 +86,8 @@
 					</c:forEach>
 				</ul>
 				<button type="submit" class="submit-image icon-basket-alt" title="Compre Agora ${product.title}"></button>
+
+			    <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" />
 			</form>
 		</section>
 
