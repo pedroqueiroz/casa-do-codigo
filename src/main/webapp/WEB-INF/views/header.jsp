@@ -22,9 +22,7 @@
 
                     <li>
                         <a href="${s:mvcUrl('SCC#showItems').build()}" rel="nofollow">
-                            <fmt:message key="menu.cart">
-                                <fmt:param value="${shoppingCart.quantity}" />
-                            </fmt:message>
+                            <s:message code="menu.cart" arguments="${shoppingCart.quantity}" />
                         </a>
                     </li>
                     <li>
