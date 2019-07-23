@@ -22,7 +22,7 @@ public class SpringSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
             .antMatchers("/products/form").hasRole("ADMIN")
-            .antMatchers("/cart").permitAll()
+            .antMatchers("/cart/**").permitAll()
             .antMatchers(HttpMethod.POST, "/products").hasRole("ADMIN")
             .antMatchers(HttpMethod.GET, "/products").hasRole("ADMIN")
             .antMatchers(HttpMethod.GET, "/products/").hasRole("ADMIN")
