@@ -1,6 +1,11 @@
 <%@ tag language="java" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <%@ attribute name="title" required="true" %>
 <%@ attribute name="bodyClass" required="false" %>
+<%@ attribute name="extraScripts" fragment="true" %>
+
+<c:url value="/" var="contextPath" />
 
 <!DOCTYPE html>
 <html>
@@ -13,7 +18,6 @@
 
 <title>${title} - Casa do Código</title>
 
-<c:url value="/" var="contextPath" />
 <link href="${contextPath}resources/css/cssbase-min.css" rel="stylesheet" type="text/css" media="all" />
 <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' />
 <link href="${contextPath}resources/css/fonts.css" rel="stylesheet" type="text/css" media="all" />
@@ -26,6 +30,8 @@
 <link href="${contextPath}resources/css/guia-do-programador-style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="${contextPath}resources/css/products.css" rel="stylesheet" type="text/css" media="all" />
 <link href="${contextPath}resources/css/book-collection.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="icon" href="//cdn.shopify.com/s/files/1/0155/7645/t/177/assets/favicon.ico?11981592617154272979" type="image/ico" />
+<link href="https://plus.googlecom/108540024862647200608" rel="publisher" />
 
 <link rel="canonical" href="http://www.casadocodigo.com.br/" />
 </head>
@@ -35,6 +41,8 @@
 <%@ include file="/WEB-INF/views/header.jsp" %>
 
 <jsp:doBody />
+
+<jsp:invoke fragment="extraScripts"></jsp:invoke>
 
 <%@ include file="/WEB-INF/views/footer.jsp" %>
 
