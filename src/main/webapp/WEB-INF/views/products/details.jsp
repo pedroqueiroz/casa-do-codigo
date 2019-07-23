@@ -2,9 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
 
-<%@ include file="/WEB-INF/views/header.jsp" %>
-
+<tags:pageTemplate title="${product.title}">
 <article id="${product.id}">
     <header id="product-highlight" class="clearfix">
         <div id="product-overview" class="container">
@@ -58,8 +58,4 @@
         </section>
     </div>
 </article>
-
-<%@ include file="/WEB-INF/views/footer.jsp" %>
-
-</body>
-</html>
+</tags:pageTemplate>
